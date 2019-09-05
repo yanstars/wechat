@@ -35,7 +35,6 @@ page {
     border: 0;
     box-sizing: border-box;
     resize: none;
-    text-align: center;
 }
 .closeIcon {
     position: relative;
@@ -60,7 +59,6 @@ page {
     padding: 0 20rpx;
     padding-top: 0.5rem;
     box-shadow: 0 0 20rpx #888888;
-    /* overflow: hidden; */
 }
 
 .conTitle {
@@ -73,6 +71,7 @@ page {
     font-size: 0.75rem;
     color: rgb(1, 238, 238);
     line-height: 1.5rem;
+    text-align: center;
 }
 .colclass {
     text-align: center;
@@ -85,7 +84,6 @@ page {
     font-size: 0.75rem;
     color: #8e8e8e;
     line-height: 1.5rem;
-    padding-left: 20rpx;
 }
 
 .item-children {
@@ -121,7 +119,6 @@ page {
     height: 2rem;
     margin: 0 auto;
     position: relative;
-    line-height: 1.25rem;
     top: 20rpx;
     line-height: 2rem;
     background-color: #fff;
