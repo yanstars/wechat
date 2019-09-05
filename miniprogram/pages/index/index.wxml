@@ -1,16 +1,14 @@
 <!-- index.wxml -->
 <van-notify id="custom-selector" />
 <view class='index'>
-    <view class="head">
-        <van-cell-group>
-            <van-field  focus="{{true}}" center clearable left-icon="phone" placeholder="请输入你的手机号" bind:change="inputChange" border="{{ false }}" use-button-slot>
-                <van-button slot="button" size="small" type="primary" bindtap="query">
-                    查询
-                </van-button>
-            </van-field>
-        </van-cell-group>
+    <view class="inputCom">
+        <input auto-focus type="text" class="input" maxlength="11" placeholder='请输入你的手机号' bindinput="inputChange" value='{{inputValue}}'></input>
+        <view class="closeIcon" hover-class="none" hover-stop-propagation="false">
+            <van-icon wx:if="{{value}}" name="close" bind:click="clearInputEvent" />
+        </view>
+        <van-button slot="button" size="small" type="primary" bindtap="queryClick">查询</van-button>
     </view>
-    <view wx:if="{{loaded}}" class="content" bindtouchstart="handletouchtart" bindtouchmove="handletouchmove"  animation="{{animation}}" >
+    <view wx:if="{{loaded}}" class="content" bindtouchstart="handletouchtart" bindtouchmove="handletouchmove" animation="{{animation}}">
         <view class="conTitle">
             <van-row>
                 <van-col span="15">配镜处方</van-col>
@@ -22,135 +20,95 @@
         <view class="item">
             <van-row>
                 <van-col span="15">球镜(DS)</van-col>
-                <van-col span="5">{{left.ds}}</van-col>
-                <van-col span="4">{{right.ds}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftds}}</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightds}}</van-col>
             </van-row>
         </view>
         <view class="item">
             <van-row>
                 <van-col span="15">柱镜(DC)</van-col>
-                <van-col span="5">{{left.cs}}</van-col>
-                <van-col span="4">{{right.cs}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftcs}}</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightcs}}</van-col>
             </van-row>
         </view>
         <view class="item">
             <van-row>
                 <van-col span="15">轴向(°)</van-col>
-                <van-col span="5">{{left.zx}}</van-col>
-                <van-col span="4">{{right.zx}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftzx}}</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightzx}}</van-col>
             </van-row>
         </view>
         <view class="item">
             <van-row>
                 <van-col span="15">瞳距(mm)</van-col>
-                <van-col span="5">{{left.tj}}</van-col>
-                <van-col span="4">{{right.tj}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.lefttj}}</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.righttj}}</van-col>
             </van-row>
         </view>
         <view class="item">
             <van-row>
                 <van-col span="15">Add(D)</van-col>
-                <van-col span="5">{{left.add}}</van-col>
-                <van-col span="4">{{right.add}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftadd}}</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightadd}}</van-col>
             </van-row>
         </view>
         <view class="item">
             <van-row>
                 <van-col span="15">镜片类型</van-col>
-                <van-col span="5">{{left.type}}</van-col>
-                <van-col span="4">{{right.type}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.lefttype}}</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.righttype}}</van-col>
             </van-row>
         </view>
         <view class="item">
             <van-row>
                 <van-col span="15">瞳高(mm)</van-col>
-                <van-col span="5">{{left.th}}</van-col>
-                <van-col span="4">{{right.th}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftth}}</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightth}}</van-col>
             </van-row>
         </view>
         <view class="item">
             <van-row>
                 <van-col span="15">远视力</van-col>
-                <van-col span="5">{{left.hyperopia}}</van-col>
-                <van-col span="4">{{right.hyperopia}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.lefthyperopia}}</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.righthyperopia}}</van-col>
             </van-row>
         </view>
         <view class="item">
             <van-row>
                 <van-col span="15">双眼远视力</van-col>
-                <van-col span="5">{{left.doubleHy}}</van-col>
-                <van-col span="4">{{right.doubleHy}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftdoubleHy}}</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightdoubleHy}}</van-col>
             </van-row>
         </view>
         <view class="item">
             <van-row>
                 <van-col span="15">近视力</van-col>
-                <van-col span="5">{{left.myopia}}</van-col>
-                <van-col span="4">{{right.myopia}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftmyopia}}</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightmyopia}}</van-col>
             </van-row>
         </view>
         <view class="item">
             <van-row>
                 <van-col span="15">双眼近视力</van-col>
-                <van-col span="5">{{left.doubleMy}}</van-col>
-                <van-col span="4">{{right.doubleMy}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftdoubleMy}}</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightdoubleMy}}</van-col>
             </van-row>
         </view>
         <view id="Suggest" class="item">
             <van-row>
                 <van-col span="14">验光师建议</van-col>
                 <van-col span="10">
-                    <view style="width:100%; word-wrap: break-word;">{{suggest}}</view>
+                    <view style="width:90%; word-wrap: break-word;">{{obj.suggest}}</view>
                 </van-col>
             </van-row>
+        </view>
+        <view class="prompt" hover-class="none" hover-stop-propagation="false">
+            <van-icon name="arrow-up" bind:click="closePanel" />
         </view>
     </view>
     <view wx:else class="noData" hover-class="none" hover-stop-propagation="false">
         <view>
-            <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})"></button>
-            <button class="userinfo-nickname" bindtap="toRoot">管理员登录</button>
+            <button class="toRoot" bindtap="">Root</button>
         </view>
     </view>
 </view>
-<!-- <view class="container"> -->
-<!-- <view class="userinfo">
-    <button 
-      open-type="getUserInfo" 
-      bindgetuserinfo="onGetUserInfo"
-      class="userinfo-avatar"
-      style="background-image: url({{avatarUrl}})"
-    ></button>
-    <view>
-      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
-    </view>
-  </view> -->
-<!-- 上传图片 -->
-<!-- <view class="uploader">
-    <view class="uploader-text" bindtap="doUpload">
-      <text>上传图片</text>
-    </view>
-    <view class="uploader-container" wx:if="{{imgUrl}}">
-      <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
-    </view>
-  </view> -->
-<!-- 操作数据库 -->
-<!-- <view class="uploader">
-    <navigator url="../databaseGuide/databaseGuide" open-type="navigate" class="uploader-text">
-      <text>前端操作数据库</text>
-    </navigator>
-  </view> -->
-<!-- 新建云函数 -->
-<!-- <view class="uploader">
-    <navigator url="../addFunction/addFunction" open-type="navigate" class="uploader-text">
-      <text>快速新建云函数</text>
-    </navigator>
-  </view> -->
-<!-- 云调用 -->
-<!-- <view class="uploader">
-    <navigator url="../openapi/openapi" open-type="navigate" class="uploader-text">
-      <text>云调用</text>
-    </navigator>
-  </view>
-
-
-</view> -->

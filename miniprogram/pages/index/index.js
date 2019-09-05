@@ -1,55 +1,41 @@
-//index.js
 import Notify from 'vant-weapp//notify/notify';
 const app = getApp()
-
 Page({
     data: {
         lastX: 0,
         lastY: 0,
         isChecked: false,
-        avatarUrl: './user-unlogin.png',
         userInfo: {},
-        logged: false,
-        takeSession: false,
-        requestResult: '',
         loaded: false,
-        value: '',
-        left: {
-            ds: '',
-            cs: '',
-            zx: '',
-            tj: '',
-            add: '',
-            type: '',
-            th: '',
-            hyperopia: '',
-            doubleHy: '',
-            myopia: '',
-            doubleMy: '',
-
-        },
-        right: {
-            ds: '',
-            cs: '',
-            zx: '',
-            tj: '',
-            add: '',
-            type: '',
-            th: '',
-            hyperopia: '',
-            doubleHy: '',
-            myopia: '',
-            doubleMy: '',
-
-        },
-        suggest: ''
-
+        value: '', //输入框的data
+        obj: {},
+        inputValue: '',
+    },
+    clearInputEvent: function (res) {
+        this.setData({
+            'inputValue': '',
+            'value': ''
+        })
+    },
+    scaleH() {
+        this.animation.scaleY(1).step()
+        this.setData({
+            animation: this.animation.export()
+        })
     },
     scale: function () {
         this.animation.scaleY(0).step()
         this.setData({
-            animation: this.animation.export()
+            animation: this.animation.export(),
+            value: ''
         })
+        this.clearInputEvent()
+    },
+
+    //手势检测
+    handletouchtart: function (event) {
+        this.data.lastX = event.touches[0].pageX
+        this.data.lastY = event.touches[0].pageY
     },
     handletouchmove: function (event) {
         let currentX = event.touches[0].pageX
@@ -65,86 +51,60 @@ Page({
         }
         //上下方向滑动
         else {
-            if (ty < 0) {
-                this.scale()
-
-                let that = this
-                setTimeout(function () {
-                    that.setData({
-                        loaded: false
-                    })
-                }, 1000)
-            } 
+            if (ty < -30) {
+                this.closePanel()
+            }
         }
-
         //将当前坐标进行保存以进行下一次计算
         this.data.lastX = currentX
         this.data.lastY = currentY
 
     },
+    closePanel() {
+        this.scale()
+        let that = this
+        setTimeout(function () {
+            that.setData({
+                loaded: false
+            })
+        }, 1000)
 
-    handletouchtart: function (event) {
-        console.log(event)
-        this.data.lastX = event.touches[0].pageX
-        this.data.lastY = event.touches[0].pageY
     },
-    handletap: function (event) {
-        console.log(event)
+    queryClick() {
+        this.onQuery();
     },
-
-
     onQuery() {
         const db = wx.cloud.database()
-        let target = this.data.value
-        console.log('查询的value :', this.data.value);
-
+        let target = ''
+        target = this.data.value.value ? this.data.value.value : target
         if (target.length == 11) {
             db.collection('users').where({
-                tele: this.value
+                tele: target
             }).get({
                 success: res => {
-                    this.setData({
-                        suggest: res.data[0].suggest,
+                    if (res.data.length) {
+                        this.setData({
+                            obj: res.data[0],
+                            loaded: true,
+                        })
+                        this.scaleH()
+                    } else {
+                        Notify({
+                            text: '暂无此用户信息',
+                            duration: 1000,
+                            selector: '#custom-selector',
+                            backgroundColor: '#ff976a'
+                        });
+                    }
 
-
-                        'left.ds': res.data[0].dsleft,
-                        'left.cs': res.data[0].dsright,
-                        'left.zx': res.data[0].dsleft,
-                        'left.tj': res.data[0].dsleft,
-                        'left.add': res.data[0].dsleft,
-                        'left.type': res.data[0].dsleft,
-                        'left.th': res.data[0].dsleft,
-                        'left.hyperopia': res.data[0].dsleft,
-                        'left.doubleHy': res.data[0].doubleHy,
-                        'left.myopia': res.data[0].dsleft,
-                        'left.doubleMy': res.data[0].dsleft,
-
-
-
-                        'right.zx': res.data[0].dsleft,
-                        'right.cs': res.data[0].dsright,
-                        'right.ds': res.data[0].dsleft,
-                        'right.tj': res.data[0].dsleft,
-                        'right.add': res.data[0].dsleft,
-                        'right.type': res.data[0].dsleft,
-                        'right.th': res.data[0].dsleft,
-                        'right.hyperopia': res.data[0].dsleft,
-                        'right.doubleHy': res.data[0].doubleHy,
-                        'right.myopia': res.data[0].dsleft,
-                        'right.doubleMy': res.data[0].dsleft,
-
-
-
-                        loaded: true,
-                    })
-                    this.loaded = true;
                 },
                 fail: err => {
-                    wx.showToast({
-                        icon: 'none',
-                        title: '查询记录失败'
-                    })
-                    console.error('[数据库] [查询记录] 失败：', err)
+                    Notify({
+                        text: '查询错误，联系客服',
+                        duration: 1000,
+                        selector: '#custom-selector',
+                        backgroundColor: '#ff976a'
+                    });
                 }
             })
         } else {
@@ -156,21 +116,15 @@ Page({
             });
         }
     },
-
+    //获取input值
     inputChange(event) {
         this.value = event.detail
         this.setData({
             value: event.detail
         });
     },
-    query() {
-
-        this.onQuery();
-
-    },
+    //跳转页面
     toRoot() {
-
-
         wx.cloud.callFunction({
             name: 'login',
             data: {},
@@ -191,29 +145,10 @@ Page({
 
     },
 
-
-
-
-
-
-
-
-
-    onReady: function () {
+    onReady() {
         this.animation = wx.createAnimation()
     },
-
-
     onLoad: function () {
-
-
-
-        if (!wx.cloud) {
-            wx.redirectTo({
-                url: '../chooseLib/chooseLib',
-            })
-            return
-        }
 
         // 获取用户信息
         wx.getSetting({
@@ -242,76 +177,4 @@ Page({
             })
         }
     },
-
-    onGetOpenid: function () {
-        // 调用云函数
-        wx.cloud.callFunction({
-            name: 'login',
-            data: {},
-            success: res => {
-                console.log('[云函数] [login] user openid: ', res.result.openid)
-                app.globalData.openid = res.result.openid
-                wx.navigateTo({
-                    url: '../userConsole/userConsole',
-                })
-            },
-            fail: err => {
-                console.error('[云函数] [login] 调用失败', err)
-                wx.navigateTo({
-                    url: '../deployFunctions/deployFunctions',
-                })
-            }
-        })
-    },
-
-    // 上传图片
-    doUpload: function () {
-        // 选择图片
-        wx.chooseImage({
-            count: 1,
-            sizeType: ['compressed'],
-            sourceType: ['album', 'camera'],
-            success: function (res) {
-
-                wx.showLoading({
-                    title: '上传中',
-                })
-
-                const filePath = res.tempFilePaths[0]
-
-                // 上传图片
-                const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-                wx.cloud.uploadFile({
-                    cloudPath,
-                    filePath,
-                    success: res => {
-                        console.log('[上传文件] 成功：', res)
-
-                        app.globalData.fileID = res.fileID
-                        app.globalData.cloudPath = cloudPath
-                        app.globalData.imagePath = filePath
-
-                        wx.navigateTo({
-                            url: '../storageConsole/storageConsole'
-                        })
-                    },
-                    fail: e => {
-                        console.error('[上传文件] 失败：', e)
-                        wx.showToast({
-                            icon: 'none',
-                            title: '上传失败',
-                        })
-                    },
-                    complete: () => {
-                        wx.hideLoading()
-                    }
-                })
-
-            },
-            fail: e => {
-                console.error(e)
-            }
-        })
-    },
-
 })
