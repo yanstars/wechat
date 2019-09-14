@@ -6,6 +6,9 @@
         "van-row": "vant-weapp/row",
         "van-col": "vant-weapp/col",
         "van-icon": "vant-weapp/icon",
-        "van-notify": "vant-weapp/notify"
+        "van-notify": "vant-weapp/notify",
+        "van-loading": "vant-weapp/loading",
+        "van-progress": "vant-weapp/progress"
+
     }
 }

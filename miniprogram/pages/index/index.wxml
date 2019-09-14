@@ -1,114 +1,36 @@
 <!-- index.wxml -->
 <van-notify id="custom-selector" />
-<view class='index'>
-    <view class="inputCom">
-        <input auto-focus type="text" class="input" maxlength="11" placeholder='请输入你的手机号' bindinput="inputChange" value='{{inputValue}}'></input>
-        <view class="closeIcon" hover-class="none" hover-stop-propagation="false">
-            <van-icon wx:if="{{value}}" name="close" bind:click="clearInputEvent" />
+<view class="index">
+    <view class="wrap">
+        <view class="logo">
+            <image src="cloud://yanstars-qsjfo.7961-yanstars-qsjfo/logo.jpg" bindtap="toRoot" class='imglogo'></image>
         </view>
-        <van-button slot="button" size="small" type="primary" bindtap="queryClick">查询</van-button>
-    </view>
-    <view wx:if="{{loaded}}" class="content" bindtouchstart="handletouchtart" bindtouchmove="handletouchmove" animation="{{animation}}">
-        <view class="conTitle">
-            <van-row>
-                <van-col span="15">配镜处方</van-col>
-                <van-col class="eye" span="5">左眼</van-col>
-                <van-col class="eye" span="4">右眼</van-col>
-            </van-row>
+        <view class="title">
+            <view class="center">我的验光单</view>
+            <!-- <van-progress percentage="100" pivot-color="#7232dd" show-pivot="{{false}}" color="linear-gradient(to right, rgba(88, 97, 224, 1), rgba(103, 182, 225, 1))" /> -->
+            <view class="center">MY OPTOMETRY SHEET</view>
         </view>
-        <view id="itemFirst" class="item">框架配镜处方单</view>
-        <view class="item">
-            <van-row>
-                <van-col span="15">球镜(DS)</van-col>
-                <van-col custom-class="colclass" span="5">{{obj.leftds}}</van-col>
-                <van-col custom-class="colclass" span="4">{{obj.rightds}}</van-col>
-            </van-row>
+        <view class="inputCom">
+            <view class="closeIcon">
+                <van-icon name="phone-o" />
+            </view>
+            <input type="text" class="input" maxlength="11" bindinput="inputChange" value='{{inputValue}}'></input>
+            <view class="closeIcon">
+                <van-icon wx:if="{{value}}" name="close" bind:click="clearInputEvent" />
+            </view>
+            <button class="queryBtn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+                查询
+            </button>
         </view>
-        <view class="item">
-            <van-row>
-                <van-col span="15">柱镜(DC)</van-col>
-                <van-col custom-class="colclass" span="5">{{obj.leftcs}}</van-col>
-                <van-col custom-class="colclass" span="4">{{obj.rightcs}}</van-col>
-            </van-row>
+        <view class='imgCard'>
+            <image src='cloud://yanstars-qsjfo.7961-yanstars-qsjfo/img2.jpg' class='img-content'></image>
         </view>
-        <view class="item">
-            <van-row>
-                <van-col span="15">轴向(°)</van-col>
-                <van-col custom-class="colclass" span="5">{{obj.leftzx}}</van-col>
-                <van-col custom-class="colclass" span="4">{{obj.rightzx}}</van-col>
-            </van-row>
+        <view class='imgCard'>
+            <image src='cloud://yanstars-qsjfo.7961-yanstars-qsjfo/img.jpg' class='img-content'></image>
         </view>
-        <view class="item">
-            <van-row>
-                <van-col span="15">瞳距(mm)</van-col>
-                <van-col custom-class="colclass" span="5">{{obj.lefttj}}</van-col>
-                <van-col custom-class="colclass" span="4">{{obj.righttj}}</van-col>
-            </van-row>
-        </view>
-        <view class="item">
-            <van-row>
-                <van-col span="15">Add(D)</van-col>
-                <van-col custom-class="colclass" span="5">{{obj.leftadd}}</van-col>
-                <van-col custom-class="colclass" span="4">{{obj.rightadd}}</van-col>
-            </van-row>
-        </view>
-        <view class="item">
-            <van-row>
-                <van-col span="15">镜片类型</van-col>
-                <van-col custom-class="colclass" span="5">{{obj.lefttype}}</van-col>
-                <van-col custom-class="colclass" span="4">{{obj.righttype}}</van-col>
-            </van-row>
-        </view>
-        <view class="item">
-            <van-row>
-                <van-col span="15">瞳高(mm)</van-col>
-                <van-col custom-class="colclass" span="5">{{obj.leftth}}</van-col>
-                <van-col custom-class="colclass" span="4">{{obj.rightth}}</van-col>
-            </van-row>
-        </view>
-        <view class="item">
-            <van-row>
-                <van-col span="15">远视力</van-col>
-                <van-col custom-class="colclass" span="5">{{obj.lefthyperopia}}</van-col>
-                <van-col custom-class="colclass" span="4">{{obj.righthyperopia}}</van-col>
-            </van-row>
-        </view>
-        <view class="item">
-            <van-row>
-                <van-col span="15">双眼远视力</van-col>
-                <van-col custom-class="colclass" span="5">{{obj.leftdoubleHy}}</van-col>
-                <van-col custom-class="colclass" span="4">{{obj.rightdoubleHy}}</van-col>
-            </van-row>
-        </view>
-        <view class="item">
-            <van-row>
-                <van-col span="15">近视力</van-col>
-                <van-col custom-class="colclass" span="5">{{obj.leftmyopia}}</van-col>
-                <van-col custom-class="colclass" span="4">{{obj.rightmyopia}}</van-col>
-            </van-row>
-        </view>
-        <view class="item">
-            <van-row>
-                <van-col span="15">双眼近视力</van-col>
-                <van-col custom-class="colclass" span="5">{{obj.leftdoubleMy}}</van-col>
-                <van-col custom-class="colclass" span="4">{{obj.rightdoubleMy}}</van-col>
-            </van-row>
-        </view>
-        <view id="Suggest" class="item">
-            <van-row>
-                <van-col span="14">验光师建议</van-col>
-                <van-col span="10">
-                    <view style="width:90%; word-wrap: break-word;">{{obj.suggest}}</view>
-                </van-col>
-            </van-row>
-        </view>
-        <view class="prompt" hover-class="none" hover-stop-propagation="false">
-            <van-icon name="arrow-up" bind:click="closePanel" />
-        </view>
-    </view>
-    <view wx:else class="noData" hover-class="none" hover-stop-propagation="false">
         <view>
-            <button class="toRoot" bindtap="">Root</button>
+            <view class='bot-addr'>{{addr}}</view>
+            <view bindtap="makeCall" class='bot-tel'>{{tele}}</view>
         </view>
     </view>
 </view>

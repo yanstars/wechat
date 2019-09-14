@@ -7,14 +7,14 @@ cloud.init()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  console.log("云端收到的凭证：", event.token)
+  console.log("云端收到的凭证：", event)
   var token = event.token
   var filename = event.filename
   var type = event.type
   var options = {
     method: 'POST',
     uri: 'https://api.weixin.qq.com/tcb/databasemigrateimport?access_token=' + token,
-    // uri: `https://api.weixin.qq.com/tcb/databasemigrateimport?access_token=token`,
+ 
     body: {
       "env": "yanstars-qsjfo",
       "collection_name": "users",

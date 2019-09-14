@@ -2,7 +2,7 @@
 .van-notify {
     position: fixed;
     top: 0;
-    width: 95%;
+    width: 100%;
     padding: 6px 15px;
     font-size: 14px;
     line-height: 18px;

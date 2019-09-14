@@ -1,1 +1,16 @@
-<view class="container">管理员页面！</view>
+<!-- index.wxml -->
+<van-notify id="custom-selectorroot" />
+<view class="index">
+    <view class="wrap">
+        <van-button type="default" bind:click="choseClick" size="large">选择文件</van-button>
+        <!-- <view bindtap="choseClick">选择文件</view> -->
+        <view class="file">
+            <view class="file-l">你选择了:</view>
+            <view class="filename">
+                <van-icon size="3rem" name="orders-o" />
+                {{filename}}
+            </view>
+        </view>
+        <van-button type="default" bind:click="importDb" size="large">导入至数据库</van-button>
+    </view>
+</view>

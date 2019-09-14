@@ -1,127 +1,123 @@
 /**index.wxss**/
 
 page {
-    background: #e8ecf0;
-    width: 95%;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(88, 97, 224, 1),
+        rgba(103, 182, 225, 1)
+    );
 }
+
 .index {
     width: 100%;
     height: 100%;
-    padding-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.inputCom {
-    box-shadow: 0 0 20rpx #888888;
+
+.wrap {
+    margin: 0 auto;
+    width: 70%;
+    background-color: #fff;
+    padding: 0.75rem 2rem;
+    border-radius: 1rem;
 }
+
+.title {
+    width: 100%;
+    text-align: center;
+}
+
+.center:first-child {
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.center:last-child {
+    font-size: 16rpx;
+    color: #8e8e8e;
+}
+
+.img-content {
+    width: 100%;
+    height: 8rem;
+    border-radius: 0.75rem;
+}
+
+.imglogo {
+    width: 4rem;
+    height: 4rem;
+}
+.queryBtn {
+    height: 30px;
+    min-width: 60px;
+    font-size: 12px;
+    line-height: 28px;
+    border: 1px solid #f3eded;
+}
+
+.logo {
+    margin: 0 auto;
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 50%;
+}
+
 .inputCom {
+    border: 1px solid #eee;
+
+    border-radius: 0.5rem;
+    margin-top: 20%;
+    padding: 10rpx;
+    padding-left: 25rpx;
     display: flex;
     background-color: #fff;
-    padding: 0.75rem;
 }
+
 .input {
     position: relative;
-    font-size: 0.9rem;
     display: block;
     width: 100%;
-    height: 24px;
     min-height: 30.4px;
     padding: 0;
     margin: 0;
     line-height: inherit;
-    color: #333;
+    color: #8e8e8e;
     text-align: left;
     background-color: initial;
     border: 0;
     box-sizing: border-box;
-    resize: none;
 }
+
 .closeIcon {
     position: relative;
     top: 10rpx;
     left: -10rpx;
     opacity: 0.5;
 }
-.toRoot {
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
-    line-height: 5rem;
-    background-color: #07c160;
-    color: #fff;
-    box-shadow: 0 0 20rpx #888888;
-}
-.content {
-    background-color: white;
-    margin: 0 auto;
-    margin-top: 0.75rem;
-    border-radius: 10rpx;
-    padding: 0 20rpx;
-    padding-top: 0.5rem;
-    box-shadow: 0 0 20rpx #888888;
-}
 
-.conTitle {
-    padding-bottom: 0.75rem;
-    border-bottom: 2rpx solid #c7c2c2;
-    margin-bottom: 0.5rem;
-}
-
-.eye {
-    font-size: 0.75rem;
-    color: rgb(1, 238, 238);
-    line-height: 1.5rem;
+.bot-addr {
     text-align: center;
-}
-.colclass {
-    text-align: center;
-}
-
-.item {
-    width: 100%;
-    height: 1.5rem;
-    margin-bottom: 10rpx;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #8e8e8e;
-    line-height: 1.5rem;
+    margin-bottom: 3%;
+    margin-top: 2%;
 }
 
-.item-children {
-    width: 30%;
-    height: 1.5rem;
-    background-color: blue;
-}
-
-.noData {
-    background-color: white;
-    width: 100%;
-    height: 1044rpx;
-    margin-top: 0.75rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 20rpx #888888;
-}
-
-#itemFirst {
+.bot-tel {
+    text-align: center;
     font-size: 0.8rem;
-    color: rgb(51, 50, 50);
+    color: #8e8e8e;
 }
 
-#Suggest {
-    height: 5rem;
-}
-.prompt {
-    color: #8e8e8e;
-    font-size: 0.75rem;
-    text-align: center;
-    width: 2rem;
-    height: 2rem;
-    margin: 0 auto;
-    position: relative;
-    top: 20rpx;
-    line-height: 2rem;
-    background-color: #fff;
-    box-shadow: 0 0 20rpx #888888;
-    border-radius: 50%;
+.imgCard {
+    margin-top: 0.75rem;
 }
