@@ -1,16 +1,29 @@
 <!-- index.wxml -->
 <van-notify id="custom-selectorroot" />
 <view class="index">
-    <view class="wrap">
-        <van-button type="default" bind:click="choseClick" size="large">选择文件</van-button>
-        <!-- <view bindtap="choseClick">选择文件</view> -->
-        <view class="file">
-            <view class="file-l">你选择了:</view>
-            <view class="filename">
-                <van-icon size="3rem" name="orders-o" />
-                {{filename}}
-            </view>
-        </view>
-        <van-button type="default" bind:click="importDb" size="large">导入至数据库</van-button>
+  <view class="wrap">
+    <van-button type="default" bind:click="choseClick" size="large">选择并上传文件</van-button>
+    <view wx:if="{{!hasFile}}" class="file">
+      <view>
+        <image src="cloud://yanstars-qsjfo.7961-yanstars-qsjfo/app/nofile.png" mode="scaleToFill" class='png-file'></image>
+        <view class='word-file  font'>暂无文件</view>
+      </view>
+
     </view>
+    <view wx:else class="file">
+      <view>
+        <image src="cloud://yanstars-qsjfo.7961-yanstars-qsjfo/app/file.png" mode="scaleToFill" class='png-file'></image>
+        <view class='word-file  font'>{{filename}}</view>
+      </view>
+
+    </view>
+    <van-button type="default" bind:click="importDb" size="large">导入至数据库</van-button>
+
+
+    <view class='font' style='width:100%;position:relative;bottom:-10%;'>
+      <view> 信息录入请匹配相关字段和格式</view>
+      <view> 仅支持.json或.csv类型文件导入</view>
+    </view>
+
+  </view>
 </view>

@@ -1,48 +1,58 @@
 /**index.wxss**/
 
 page {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to right,
-        rgba(88, 97, 224, 1),
-        rgba(103, 182, 225, 1)
-    );
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(88, 97, 224, 1), rgba(103, 182, 225, 1));
 }
 
 .index {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .wrap {
-    margin: 0 auto;
-    width: 70%;
-    height: 80%;
-    background-color: #fff;
-    padding: 0.75rem 2rem;
-    border-radius: 1rem;
+  margin: 0 auto;
+  width: 70%;
+  height: 80%;
+  background-color: #fff;
+  padding: 2rem 2rem;
+  border-radius: 1rem;
 }
 
 .file {
-    width: 100%;
-    height: 3rem;
-    display: flex;
-    flex-direction: row;
+  box-sizing: border-box;
+  margin: 2rem 0;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1rpx solid #eee;
 }
-.file-l {
-    flex-wrap: nowrap;
-    line-height: 3rem;
-    flex: 1;
-    
+
+.word-file {
+  width: 3.5rem;
+  margin-top: 0.5rem;
 }
-.filename {
-    flex-wrap: nowrap;
-    flex: 1;
-    
+
+.png-file {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+
+.font{
+  font-size: 0.75rem;
+  color: #8e8e8e;
+  text-align: center;
+  line-height: 1.25rem;
+ 
+
+
 }

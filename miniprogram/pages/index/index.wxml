@@ -3,7 +3,7 @@
 <view class="index">
     <view class="wrap">
         <view class="logo">
-            <image src="cloud://yanstars-qsjfo.7961-yanstars-qsjfo/logo.jpg" bindtap="toRoot" class='imglogo'></image>
+            <image src="cloud://yanstars-qsjfo.7961-yanstars-qsjfo/app/logo.jpg" bindtap="toRoot" class='imglogo'></image>
         </view>
         <view class="title">
             <view class="center">我的验光单</view>
@@ -16,17 +16,17 @@
             </view>
             <input type="text" class="input" maxlength="11" bindinput="inputChange" value='{{inputValue}}'></input>
             <view class="closeIcon">
-                <van-icon wx:if="{{value}}" name="close" bind:click="clearInputEvent" />
+                <van-icon wx:if="{{value}}" style=' opacity:0.3' name="close" bind:click="clearInputEvent" />
             </view>
             <button class="queryBtn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
                 查询
             </button>
         </view>
         <view class='imgCard'>
-            <image src='cloud://yanstars-qsjfo.7961-yanstars-qsjfo/img2.jpg' class='img-content'></image>
+            <image src='cloud://yanstars-qsjfo.7961-yanstars-qsjfo/app/img2.jpg' class='img-content'></image>
         </view>
         <view class='imgCard'>
-            <image src='cloud://yanstars-qsjfo.7961-yanstars-qsjfo/img.jpg' class='img-content'></image>
+            <image src='cloud://yanstars-qsjfo.7961-yanstars-qsjfo/app/img.jpg' class='img-content'></image>
         </view>
         <view>
             <view class='bot-addr'>{{addr}}</view>

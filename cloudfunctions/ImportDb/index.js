@@ -18,7 +18,7 @@ exports.main = async (event, context) => {
     body: {
       "env": "yanstars-qsjfo",
       "collection_name": "users",
-      "file_path": filename,
+      "file_path": 'data/'+filename,
       "file_type": type,
       "stop_on_error": false,
       "conflict_mode": 1

@@ -59,6 +59,7 @@ page {
     font-size: 12px;
     line-height: 28px;
     border: 1px solid #f3eded;
+    color: #aaa
 }
 
 .logo {
