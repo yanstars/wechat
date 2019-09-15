@@ -84,6 +84,7 @@ Page({
         this.setData({
           token: JSON.parse(res.result).access_token
         })
+        console.log(this.data.token)
       },
       fail: err => {
         console.error('[云函数] [sum] 调用失败：', err)
@@ -101,6 +102,7 @@ Page({
         type: this.data.type
       },
       success: res => {
+        console.log(res)
 
         if (res.result.errcode == 0) {
           Notify({
@@ -133,7 +135,7 @@ Page({
 
   onLoad: function() {
     this.getToken()
-
+    
   },
 
 })

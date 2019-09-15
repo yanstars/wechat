@@ -68,8 +68,8 @@
     <view class="item">
       <van-row>
         <van-col span="15">双眼远视力</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.leftdoubleHy}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.rightdoubleHy}}</van-col>
+        <van-col custom-class="colclass" span="9">{{obj.doubleHy}}</van-col>
+      
       </van-row>
     </view>
     <view class="item">
@@ -90,8 +90,8 @@
     <view class="item">
       <van-row>
         <van-col span="15">双眼近视力</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.leftdoubleMy}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.rightdoubleMy}}</van-col>
+        <van-col custom-class="colclass" span="9">{{obj.doubleMy}}</van-col>
+      
       </van-row>
     </view>
     <view class="item  itemFirst">
@@ -132,8 +132,7 @@
     <view class="item">
       <van-row>
         <van-col span="15">双眼远视力</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.BleftdoubleHy}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.BrightdoubleHy}}</van-col>
+        <van-col custom-class="colclass" span="9">{{obj.BdoubleHy}}</van-col>
       </van-row>
     </view>
 

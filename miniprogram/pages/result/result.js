@@ -85,7 +85,7 @@ Page({
       obj: app.obj,
       userInfo: app.globalData.userInfo,
     })
-    wx.hideLoading()
+
   },
 
   /**
