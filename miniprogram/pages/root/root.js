@@ -1,8 +1,6 @@
 import Notify from 'vant-weapp//notify/notify';
 
 Page({
-
-
   data: {
     token: '',
     userInfo: {},
@@ -14,14 +12,9 @@ Page({
     addr: '北京市朝阳区潘家园国际眼镜大厦11层1108号',
     hasFile: false
   },
-
-
   choseClick() {
     this.uploadfile()
   },
-
-
-
   //选择 json/csv文件上传到云储存
   uploadfile() {
     var that = this
@@ -29,8 +22,6 @@ Page({
       count: 1,
       type: 'file',
       success(res) {
-        console.log('选择文件回调res :', res);
-     
         var name = res.tempFiles[0].name
         if (name.slice(-1) === 'v') {
           that.setData({
@@ -45,13 +36,10 @@ Page({
         }
         var filePath = res.tempFiles[0].path
         const cloudPath = `data/`+name
-
-
         wx.cloud.uploadFile({
           cloudPath,
           filePath,
           success: res => {
-            console.log('上传成功回调res :', res);
             Notify({
               text: '上传文件成功',
               duration: 1000,
@@ -63,7 +51,6 @@ Page({
             })
           },
           fail: e => {
-            console.log('e :', e);
             Notify({
               text: '上传文件失败,请重试',
               duration: 1000,
@@ -84,7 +71,6 @@ Page({
         this.setData({
           token: JSON.parse(res.result).access_token
         })
-        console.log(this.data.token)
       },
       fail: err => {
         console.error('[云函数] [sum] 调用失败：', err)
@@ -102,8 +88,6 @@ Page({
         type: this.data.type
       },
       success: res => {
-        console.log(res)
-
         if (res.result.errcode == 0) {
           Notify({
             text: '导入数据成功',
@@ -121,7 +105,6 @@ Page({
         }
       },
       fail: err => {
-        console.log('导入数据库云函数调用 :', err);
         Notify({
           text: '云函数调用失败',
           duration: 1000,
@@ -132,10 +115,7 @@ Page({
     })
   },
 
-
   onLoad: function() {
     this.getToken()
-    
   },
-
 })

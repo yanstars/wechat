@@ -69,18 +69,19 @@ Page({
         url: '../root/root'
       })
     } else {
-      if (target.length == 11) {
-        wx.showLoading({
-          title: '查询中',
-        })
-        this.onQuery(target);
-      } else {
+      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+      if (!myreg.test(target)) {
         Notify({
           text: '请输入正确的手机号',
           duration: 1000,
           selector: '#custom-selector',
           backgroundColor: '#ff976a'
         });
+      } else {
+        wx.showLoading({
+          title: '查询中',
+        })
+        this.onQuery(target);
       }
     }
   },
