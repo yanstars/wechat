@@ -1,140 +1,149 @@
 <van-notify id="custom-selector" />
 <view class="head">
-  <view class="icon">
-    <view>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <view class="icon">
+        <view>
+            <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        </view>
+        <view class="user">{{userInfo.nickName}}</view>
     </view>
-    <view class="user">{{userInfo.nickName}}</view>
-  </view>
 </view>
 <view class="main">
-  <view class="info">
-    <view class="item">
-      <van-row>
-        <van-col span="8">检查项目</van-col>
-        <van-col span="8" custom-class="colclass" offset="8">标准验光</van-col>
-      </van-row>
+    <view class="info">
+        <view class="item">
+            <van-row>
+                <van-col span="8">姓名</van-col>
+                <van-col span="8" custom-class="colclass" offset="8">{{obj.time}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="8">年龄</van-col>
+                <van-col span="8" custom-class="colclass" offset="8">{{obj.time}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="8">检查项目</van-col>
+                <van-col span="8" custom-class="colclass" offset="8">标准验光</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="8">检查时间</van-col>
+                <van-col span="8" custom-class="colclass" offset="8">{{obj.time}}</van-col>
+            </van-row>
+        </view>
     </view>
-    <view class="item">
-      <van-row>
-        <van-col span="8">检查时间</van-col>
-        <van-col span="8" custom-class="colclass" offset="8">{{obj.time}}</van-col>
-      </van-row>
+    <view wx:if="{{true}}" class="content" bindtouchstart="handletouchtart" bindtouchmove="handletouchmove" animation="{{animation}}">
+        <view class="item  itemFirst">
+            <van-row>
+                <van-col span="15">验光配镜处方</van-col>
+                <van-col class="eye" span="4">右眼</van-col>
+                <van-col class="eye" span="5">左眼</van-col>
+            </van-row>
+        </view>
+    
+        <view class="item">
+            <van-row>
+                <van-col span="15">球镜(DS)</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightds}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftds}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">柱镜(DC)</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightcs}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftcs}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">轴向(°)</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightzx}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftzx}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">瞳距(mm)</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.righttj}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.lefttj}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">远视力</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.righthyperopia}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.lefthyperopia}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">双眼远视力</van-col>
+                <van-col custom-class="colclass" span="9">{{obj.doubleHy}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">Add(D)</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightadd}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftadd}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">近视力</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.leftmyopia}}</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.rightmyopia}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">双眼近视力</van-col>
+                <van-col custom-class="colclass" span="9">{{obj.doubleMy}}</van-col>
+            </van-row>
+        </view>
+        <view class="item  itemFirst">
+            <van-row>
+                <van-col span="15">角膜接触镜配镜处方</van-col>
+                <van-col class="eye" span="4">右眼</van-col>
+                <van-col class="eye" span="5">左眼</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">球镜(DS)</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.Brightds}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.Bleftds}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">柱镜(DC)</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.Brightcs}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.Bleftcs}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">轴向(°)</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.Brightzx}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.Bleftzx}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">远视力</van-col>
+                <van-col custom-class="colclass" span="4">{{obj.Brighthyperopia}}</van-col>
+                <van-col custom-class="colclass" span="5">{{obj.Blefthyperopia}}</van-col>
+            </van-row>
+        </view>
+        <view class="item">
+            <van-row>
+                <van-col span="15">双眼远视力</van-col>
+                <van-col custom-class="colclass" span="9">{{obj.BdoubleHy}}</van-col>
+            </van-row>
+        </view>
     </view>
-  </view>
-  <view wx:if="{{true}}" class="content" bindtouchstart="handletouchtart" bindtouchmove="handletouchmove" animation="{{animation}}">
-    <view class="item  itemFirst">
-      <van-row>
-        <van-col span="15">验光配镜处方</van-col>
-        <van-col class="eye" span="5">左眼</van-col>
-        <van-col class="eye" span="4">右眼</van-col>
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">球镜(DS)</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.leftds}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.rightds}}</van-col>
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">柱镜(DC)</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.leftcs}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.rightcs}}</van-col>
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">轴向(°)</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.leftzx}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.rightzx}}</van-col>
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">瞳距(mm)</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.lefttj}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.righttj}}</van-col>
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">远视力</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.lefthyperopia}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.righthyperopia}}</van-col>
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">双眼远视力</van-col>
-        <van-col custom-class="colclass" span="9">{{obj.doubleHy}}</van-col>
-      
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">Add(D)</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.leftadd}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.rightadd}}</van-col>
-      </van-row>
-    </view>
-
-    <view class="item">
-      <van-row>
-        <van-col span="15">近视力</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.leftmyopia}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.rightmyopia}}</van-col>
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">双眼近视力</van-col>
-        <van-col custom-class="colclass" span="9">{{obj.doubleMy}}</van-col>
-      
-      </van-row>
-    </view>
-    <view class="item  itemFirst">
-      <van-row>
-        <van-col span="15">角膜接触镜配镜处方</van-col>
-        <van-col class="eye" span="5">左眼</van-col>
-        <van-col class="eye" span="4">右眼</van-col>
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">球镜(DS)</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.Bleftds}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.Brightds}}</van-col>
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">柱镜(DC)</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.Bleftcs}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.Brightcs}}</van-col>
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">轴向(°)</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.Bleftzx}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.Brightzx}}</van-col>
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">远视力</van-col>
-        <van-col custom-class="colclass" span="5">{{obj.Blefthyperopia}}</van-col>
-        <van-col custom-class="colclass" span="4">{{obj.Brighthyperopia}}</van-col>
-      </van-row>
-    </view>
-    <view class="item">
-      <van-row>
-        <van-col span="15">双眼远视力</van-col>
-        <van-col custom-class="colclass" span="9">{{obj.BdoubleHy}}</van-col>
-      </van-row>
-    </view>
-
-  </view>
 </view>
