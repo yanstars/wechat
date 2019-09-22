@@ -13,13 +13,25 @@
             </van-row>
         </view>
         <!-- 编辑模式 -->
-        <view style="height:90%;overflow: auto;" wx:if="{{!osTypeCheck}}">
+        <view wx:if="{{!osTypeCheck}}">
+            <view>
+                <view class="inputCom">
+                    <view class="closeIcon">
+                        <van-icon name="phone-o" />
+                    </view>
+                    <input type="text" class="input" maxlength="11" bindinput="inputChange" value='{{inputValue}}'></input>
+                    <view class="closeIcon">
+                        <van-icon wx:if="{{value}}" style=' opacity:0.3' name="close" bind:click="clearInputEvent" />
+                    </view>
+                    <button class="queryBtn" bindtap="doQuery">查询</button>
+                </view>
+            </view>
             <view wx:for="{{info.user}}" wx:key="{{itema}}" wx:for-item="itema" class="item">
                 <!-- user -->
                 <van-row>
                     <van-col span="8">{{itema.label}}</van-col>
                     <van-col span="8" custom-class="colclass" offset="8">
-                        <input class=" inputDafult  {{nowINput===index+''?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index}}" bindfocus="eventhandle2" value="{{itema.value}}" bindblur="eventhandle1" type="text" />
+                        <input class=" inputDafult  {{nowINput===index+''?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index}}" bindfocus="getFoucs" value="{{itema.value}}" bindblur="loseFocu" type="text" />
                     </van-col>
                 </van-row>
             </view>
@@ -35,16 +47,16 @@
                 <van-row wx:if="{{itema.left}}">
                     <van-col span="16">{{itema.label}}</van-col>
                     <van-col custom-class="colclass" span="4.5">
-                        <input class=" inputDafult {{nowINput===index+'ur'?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index+'ur'}}" bindfocus="eventhandle2" value="{{itema.right}}" bindblur="eventhandle1" type="text" />
+                        <input class=" inputDafult {{nowINput===index+'ur'?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index+'ur'}}" bindfocus="getFoucs" value="{{itema.right}}" bindblur="loseFocu" type="text" />
                     </van-col>
                     <van-col wx:if="{{itema.left}}" custom-class="colclass" span="4.5">
-                        <input class=" inputDafult {{nowINput===index+'ul'?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index+'ul'}}" bindfocus="eventhandle2" value="{{itema.left}}" bindblur="eventhandle1" type="text" />
+                        <input class=" inputDafult {{nowINput===index+'ul'?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index+'ul'}}" bindfocus="getFoucs" value="{{itema.left}}" bindblur="loseFocu" type="text" />
                     </van-col>
                 </van-row>
                 <van-row wx:else>
                     <van-col span="16">{{itema.label}}</van-col>
                     <van-col custom-class="colclass" span="8">
-                        <input class=" inputDafult {{nowINput===index+'ur'?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index+'ur'}}" bindfocus="eventhandle2" value="{{itema.right}}" bindblur="eventhandle1" type="text" />
+                        <input class=" inputDafult {{nowINput===index+'ur'?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index+'ur'}}" bindfocus="getFoucs" value="{{itema.right}}" bindblur="loseFocu" type="text" />
                     </van-col>
                 </van-row>
             </view>
@@ -60,22 +72,26 @@
                 <van-row wx:if="{{itema.left}}">
                     <van-col span="16">{{itema.label}}</van-col>
                     <van-col custom-class="colclass" span="4.5">
-                        <input class=" inputDafult {{nowINput===index+'dr'?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index+'dr'}}" bindfocus="eventhandle2" value="{{itema.right}}" bindblur="eventhandle1" type="text" />
+                        <input class=" inputDafult {{nowINput===index+'dr'?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index+'dr'}}" bindfocus="getFoucs" value="{{itema.right}}" bindblur="loseFocu" type="text" />
                     </van-col>
                     <van-col wx:if="{{itema.left}}" custom-class="colclass" span="4.5">
-                        <input class=" inputDafult {{nowINput===index+'dl'?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index+'dl'}}" bindfocus="eventhandle2" value="{{itema.left}}" bindblur="eventhandle1" type="text" />
+                        <input class=" inputDafult {{nowINput===index+'dl'?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index+'dl'}}" bindfocus="getFoucs" value="{{itema.left}}" bindblur="loseFocu" type="text" />
                     </van-col>
                 </van-row>
                 <van-row wx:else>
                     <van-col span="16">{{itema.label}}</van-col>
                     <van-col custom-class="colclass" span="8">
-                        <input class=" inputDafult {{nowINput===index+'dr'?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index+'dr'}}" bindfocus="eventhandle2" value="{{itema.right}}" bindblur="eventhandle1" type="text" />
+                        <input class=" inputDafult {{nowINput===index+'dr'?'inputFoucs':'inputFoucs2'}}" cursor="40" mark:myMark="{{index+'dr'}}" bindfocus="getFoucs" value="{{itema.right}}" bindblur="loseFocu" type="text" />
                     </van-col>
                 </van-row>
             </view>
+            <view>
+                <button mark:mymark="save" bindtap="saveInfo">保存</button>
+                <button mark:mymark="delete" bindtap="saveInfo">删除</button>
+            </view>
         </view>
         <!-- 导入模式 -->
-        <view style="height:90%;overflow: auto;" wx:else>
+        <view wx:else>
             <!-- <van-transition name="fade-right" custom-class="block"> -->
             <van-button type="default" bind:click="choseClick" size="large">选择并上传文件</van-button>
             <view wx:if="{{!hasFile}}" class="file">
@@ -91,7 +107,7 @@
                 </view>
             </view>
             <van-button type="default" bind:click="importDb" size="large">导入至数据库</van-button>
-            <view class='fontcenter' style='width:100%;position:relative;bottom:-10%;'>
+            <view class='fontcenter'>
                 <view>信息录入请匹配相关字段和格式</view>
                 <view>仅支持.json或.csv类型文件导入</view>
             </view>
