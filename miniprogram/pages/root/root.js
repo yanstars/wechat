@@ -1,4 +1,7 @@
 import Notify from "vant-weapp//notify/notify";
+import Dialog from 'vant-weapp//dialog/dialog';
+
+
 Page({
     data: {
         inputValue: "",
@@ -14,6 +17,8 @@ Page({
         tele: "010-87363887",
         addr: "北京市朝阳区潘家园国际眼镜大厦11层1108号",
         hasFile: !1,
+        nowTarget: 'default',
+        nowTargetId: '',
         info: {
             user: [{
                     label: "姓名",
@@ -204,14 +209,14 @@ Page({
                             hasFile: !0
                         })
                     },
-                    fail: e => {
-                        Notify({
-                            text: "上传文件失败,请重试",
-                            duration: 1e3,
-                            selector: "#custom-selectorroot",
-                            backgroundColor: "#EE0A24"
-                        })
-                    }
+                    // fail: e => {
+                    //     Notify({
+                    //         text: "上传文件失败,请重试",
+                    //         duration: 1e3,
+                    //         selector: "#custom-selectorroot",
+                    //         backgroundColor: "#EE0A24"
+                    //     })
+                    // }
                 })
             }
         })
@@ -236,8 +241,9 @@ Page({
             tele: target
         }).get({
             success: res => {
-                console.log('res :', res);
                 wx.hideLoading(), res.data.length ? (
+                    this.data.nowTarget = target,
+                    this.data.nowTargetId = res.data[0]._id,
                     this.setData({
                         "info.user[0].value": res.data[0].name,
                         "info.user[1].value": res.data[0].age,
@@ -364,7 +370,6 @@ Page({
     updateInfo(target) {
         target = parseInt(target)
         const db = wx.cloud.database()
-        // 查询数据id
         db.collection('users').where({
             tele: target
         }).get().then(res => {
@@ -387,17 +392,17 @@ Page({
                 } else {
                     db.collection('users').add({
                         data: this.changeDataType(this.data.info),
-                        success: Notify({
-                            text: "添加数据成功",
-                            duration: 1e3,
-                            selector: "#custom-selectorroot",
-                            backgroundColor: "#07C160"
-                        }),
                         fail: Notify({
                             text: "添加数据失败,请重试",
                             duration: 1e3,
                             selector: "#custom-selectorroot",
                             backgroundColor: "#EE0A24"
+                        }),
+                        success: Notify({
+                            text: "添加数据成功",
+                            duration: 1e3,
+                            selector: "#custom-selectorroot",
+                            backgroundColor: "#07C160"
                         })
                     })
                 }
@@ -414,13 +419,34 @@ Page({
     saveInfo(e) {
         e.mark.mymark === "save" ?
             this.updateInfo(this.data.info.user[4].value) :
-            this.dataDelete();
+            this.dataDelete(this.data.nowTarget, this.data.nowTargetId);
     },
     //  数据删除
-    // dataDelete() { 
-    //    
-    //  
-    // },
+    dataDelete(target, id) {
+        const db = wx.cloud.database()
+        Dialog.confirm({
+            title: '',
+            message: '确定删除' + target + '的数据？'
+        }).then(() => {
+            // on confirm
+            db.collection('users').doc(id).remove({
+                fail: Notify({
+                    text: "操作失败,请重试",
+                    duration: 1e3,
+                    selector: "#custom-selectorroot",
+                    backgroundColor: "#EE0A24"
+                }),
+                success: Notify({
+                    text: "操作成功",
+                    duration: 1e3,
+                    selector: "#custom-selectorroot",
+                    backgroundColor: "#07C160"
+                })
+            })
+        }).catch(() => {
+            // on cancel
+        });
+    },
     //转换数据结构
     changeDataType(target) {
         let result1 = {}

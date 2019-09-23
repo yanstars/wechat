@@ -8,6 +8,7 @@
         "van-icon": "vant-weapp/icon",
         "van-notify": "vant-weapp/notify",
         "van-switch": "vant-weapp/switch",
-        "van-transition": "vant-weapp/transition"
+        "van-transition": "vant-weapp/transition",
+        "van-dialog": "vant-weapp/dialog"
     }
 }

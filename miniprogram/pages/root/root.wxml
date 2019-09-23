@@ -1,4 +1,5 @@
 <!-- index.wxml -->
+<van-dialog id="van-dialog" />
 <van-notify id="custom-selectorroot" />
 <view class="index">
     <view class="wrap">
