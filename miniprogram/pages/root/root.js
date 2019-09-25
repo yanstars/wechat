@@ -260,13 +260,13 @@ Page({
                         "info.dataU[3].left": res.data[0].tjygLe,
                         "info.dataU[4].right": res.data[0].yslygRi,
                         "info.dataU[4].left": res.data[0].yslygLe,
-                        "info.dataU[5].right": res.data[0].syyslygRi,
+                        // "info.dataU[5].right": res.data[0].syyslygRi,
                         "info.dataU[5].left": res.data[0].syyslygLe,
                         "info.dataU[6].right": res.data[0].addygRi,
                         "info.dataU[6].left": res.data[0].addygLe,
                         "info.dataU[7].right": res.data[0].jslygRi,
                         "info.dataU[7].left": res.data[0].jslygLe,
-                        "info.dataU[8].right": res.data[0].syjslygRi,
+                        // "info.dataU[8].right": res.data[0].syjslygRi,
                         "info.dataU[8].left": res.data[0].syjslygLe,
                         "info.dataD[0].right": res.data[0].dsygRi,
                         "info.dataD[0].left": res.data[0].dsygLe,
@@ -277,7 +277,7 @@ Page({
                         "info.dataD[3].right": res.data[0].yslygRi,
                         "info.dataD[3].left": res.data[0].yslygLe,
                         "info.dataD[4].right": res.data[0].syyslygRi,
-                        "info.dataD[4].left": res.data[0].syyslygLe,
+                        // "info.dataD[4].left": res.data[0].syyslygLe,
                     }), console.log('this.data.info :', this.data.info)) : Notify({
                     text: "暂无此用户信息",
                     duration: 1e3,
@@ -424,8 +424,7 @@ Page({
     //  数据删除
     dataDelete(target, id) {
         const db = wx.cloud.database()
-
-        typeof id == 'number' ? (Dialog.confirm({
+        id ? (Dialog.confirm({
             title: '',
             message: '确定删除' + target + '的数据？'
         }).then(() => {
