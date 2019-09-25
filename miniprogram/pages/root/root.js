@@ -376,18 +376,18 @@ Page({
                 if (res.data.length) {
                     db.collection('users').doc(res.data[0]._id).update({
                         data: this.changeDataType(this.data.info),
+                        fail: Notify({
+                            text: "添加数据失败,请重试",
+                            duration: 1e3,
+                            selector: "#custom-selectorroot",
+                            backgroundColor: "#EE0A24"
+                        }),
                         success: Notify({
                             text: "更新数据成功",
                             duration: 1e3,
                             selector: "#custom-selectorroot",
                             backgroundColor: "#07C160"
                         }),
-                        fail: Notify({
-                            text: "添加数据失败,请重试",
-                            duration: 1e3,
-                            selector: "#custom-selectorroot",
-                            backgroundColor: "#EE0A24"
-                        })
                     })
                 } else {
                     db.collection('users').add({
@@ -424,7 +424,8 @@ Page({
     //  数据删除
     dataDelete(target, id) {
         const db = wx.cloud.database()
-        Dialog.confirm({
+
+        typeof id == 'number' ? (Dialog.confirm({
             title: '',
             message: '确定删除' + target + '的数据？'
         }).then(() => {
@@ -445,7 +446,13 @@ Page({
             })
         }).catch(() => {
             // on cancel
-        });
+        })) : Notify({
+            text: "操作异常",
+            duration: 1e3,
+            selector: "#custom-selectorroot",
+            backgroundColor: "#ff976a"
+        })
+
     },
     //转换数据结构
     changeDataType(target) {

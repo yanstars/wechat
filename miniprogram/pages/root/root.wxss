@@ -130,3 +130,16 @@ page {
     border: 1px solid #f3eded;
     color: #aaa;
 }
+
+.save {
+    width: 5rem;
+    height: 2rem;
+    border: 1px solid #eee;
+    font-size: 0.9rem;
+    line-height: 2rem;
+    background-color: rgba(103, 182, 225, 1);
+    color: white;
+}
+.delete {
+    background-color: #ff976a;
+}

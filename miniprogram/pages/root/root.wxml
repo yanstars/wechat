@@ -86,9 +86,17 @@
                     </van-col>
                 </van-row>
             </view>
-            <view>
-                <button mark:mymark="save" bindtap="saveInfo">保存</button>
-                <button mark:mymark="delete" bindtap="saveInfo">删除</button>
+            <view style="margin-top:1rem;">
+                <van-row>
+                    <van-col span="12">
+                        <button class="save" mark:mymark="save" bindtap="saveInfo">保存</button>
+                    </van-col>
+                    <van-col span="12">
+                        <button class=" save delete" mark:mymark="delete" bindtap="saveInfo">
+                            删除
+                        </button>
+                    </van-col>
+                </van-row>
             </view>
         </view>
         <!-- 导入模式 -->
